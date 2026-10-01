@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Бурение.Старт</title>
+<meta name="description" content="Вводный курс «Основы бурения нефтяных и газовых скважин»: технология бурения, промывочные жидкости, крепление и заканчивание скважин.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<script>
+(function(){try{var t=localStorage.getItem('bs-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<style>
+:root{
+  --bg:#F2F4F3;--surface:#FFFFFF;--surface-2:#E8ECEB;--ink:#16262A;--muted:#4C5E62;--line:#D3DBDA;
+  --petrol:#0E4A54;--petrol-ink:#FFFFFF;--petrol-soft:#DCEAEC;
+  --ochre:#B97A1E;--ochre-ink:#8A5A12;--ochre-soft:#F6EAD6;
+  --ok:#2E7D4F;--ok-soft:#DFF0E5;--bad:#B23B2E;--bad-soft:#F7E0DD;
+  --rock1:#E4DCCB;--rock2:#D3D9D6;--rock3:#E9E0C6;--rock4:#D8D5CC;--rock5:#CCD3D2;--pay:#E9C98F;
+  --cement:#9AA6A8;--mud:#5E8C94;--steel:#2B3A3E;
+  --shadow:0 1px 2px rgba(16,38,42,.06),0 6px 20px rgba(16,38,42,.06);
+  --head:"Unbounded",system-ui,"Segoe UI",Arial,sans-serif;
+  --body:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --hh:64px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1A1D;--surface:#132428;--surface-2:#1A3035;--ink:#E6EEEE;--muted:#A4B5B7;--line:#27413F;
+    --petrol:#5FB3C0;--petrol-ink:#0D1A1D;--petrol-soft:#183A40;
+    --ochre:#E0A64B;--ochre-ink:#E0A64B;--ochre-soft:#3A2E1A;
+    --ok:#62C08A;--ok-soft:#173A29;--bad:#E57A6E;--bad-soft:#3E1F1B;
+    --rock1:#2B2A24;--rock2:#22302F;--rock3:#2F2C22;--rock4:#29292A;--rock5:#1E2A2B;--pay:#5A4320;
+    --cement:#5B6A6C;--mud:#2F5E66;--steel:#C9D6D8;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1A1D;--surface:#132428;--surface-2:#1A3035;--ink:#E6EEEE;--muted:#A4B5B7;--line:#27413F;
+  --petrol:#5FB3C0;--petrol-ink:#0D1A1D;--petrol-soft:#183A40;
+  --ochre:#E0A64B;--ochre-ink:#E0A64B;--ochre-soft:#3A2E1A;
+  --ok:#62C08A;--ok-soft:#173A29;--bad:#E57A6E;--bad-soft:#3E1F1B;
+  --rock1:#2B2A24;--rock2:#22302F;--rock3:#2F2C22;--rock4:#29292A;--rock5:#1E2A2B;--pay:#5A4320;
+  --cement:#5B6A6C;--mud:#2F5E66;--steel:#C9D6D8;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hh) + 16px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--body);overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--head);font-weight:700;line-height:1.2;margin:0 0 .6em;letter-spacing:-.01em}
+h1{font-size:clamp(28px,5vw,48px)}
+h2{font-size:clamp(24px,3.4vw,34px)}
+h3{font-size:clamp(18px,2.2vw,21px);font-weight:500;margin-top:1.8em}
+h4{font-size:16px;font-weight:500}
+p,li{max-width:68ch}
+p{margin:0 0 1em}
+a{color:var(--petrol)}
+strong{font-weight:600}
+:focus-visible{outline:3px solid var(--ochre);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+.skip{position:absolute;left:-999px;top:8px;background:var(--petrol);color:var(--petrol-ink);padding:8px 14px;z-index:100;border-radius:8px}
+.skip:focus{left:16px}
+
+/* Header */
+header.top{position:fixed;inset:0 0 auto 0;z-index:50;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.top .wrap{display:flex;align-items:center;gap:16px;height:var(--hh)}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--head);font-weight:700;font-size:17px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.logo span b{color:var(--ochre)}
+.logo svg{flex:none}
+nav.menu{margin-left:auto}
+nav.menu ul{list-style:none;margin:0;padding:0;display:flex;gap:2px}
+nav.menu a{display:block;padding:8px 11px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;white-space:nowrap}
+nav.menu a:hover{color:var(--ink);background:var(--surface-2)}
+nav.menu a.active{color:var(--petrol);background:var(--petrol-soft)}
+.icon-btn{flex:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.icon-btn:hover{background:var(--surface-2)}
+.burger{display:none}
+.depth{position:absolute;left:0;right:0;bottom:-1px;height:3px;background:transparent}
+.depth i{display:block;height:100%;width:0;background:var(--ochre);transition:width .1s linear}
+.depth-label{position:fixed;right:max(12px,env(safe-area-inset-right));top:calc(var(--hh) + env(safe-area-inset-top) + 8px);z-index:40;font:500 12px/1 var(--head);color:var(--ochre-ink);background:var(--surface);border:1px solid var(--line);padding:6px 9px;border-radius:999px;box-shadow:var(--shadow);opacity:0;transition:opacity .2s}
+.depth-label.on{opacity:1}
+@media (max-width:920px){
+  .burger{display:grid}
+  nav.menu{position:fixed;left:0;right:0;top:calc(var(--hh) + env(safe-area-inset-top));background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow);display:none;max-height:calc(100vh - var(--hh));overflow:auto}
+  nav.menu.open{display:block}
+  nav.menu ul{flex-direction:column;padding:8px max(16px,env(safe-area-inset-left)) 16px}
+  nav.menu a{padding:12px;font-size:16px}
+  .theme-btn{margin-left:auto}
+}
+
+/* Hero */
+.hero{padding:calc(var(--hh) + env(safe-area-inset-top) + 48px) 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:500 12px/1 var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--ochre-ink);margin-bottom:18px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--ochre)}
+.lead{font-size:19px;color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:10px;font:600 16px/1.2 var(--body);text-decoration:none;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--petrol);color:var(--petrol-ink)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-ghost{background:transparent;color:var(--petrol);border-color:var(--line)}
+.btn-ghost:hover{background:var(--surface)}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.stats li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:14px;color:var(--muted)}
+.stats b{color:var(--ink);font-weight:600}
+figure.well{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px;box-shadow:var(--shadow)}
+figure.well svg{display:block;width:100%;height:auto}
+figure.well figcaption{font-size:14px;color:var(--muted);padding:6px 8px 4px}
+.sv-lbl{font:600 13px var(--body);fill:var(--ink)}
+.sv-sub{font:400 11px var(--body);fill:var(--muted)}
+.sv-rock{font:500 10.5px var(--body);fill:var(--muted)}
+.sv-lead{stroke:var(--muted);stroke-width:1;fill:none}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero{padding-top:calc(var(--hh) + env(safe-area-inset-top) + 28px)}}
+
+/* Route */
+.route{padding:24px 0 8px}
+.route-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 24px;margin-bottom:16px}
+.route-head h2{margin:0}
+.progress{min-width:240px;flex:0 1 340px}
+.progress .bar{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden;border:1px solid var(--line)}
+.progress .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--petrol),var(--ochre));transition:width .4s}
+.progress p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rcard{position:relative;display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:transform .15s,border-color .15s}
+.rcard:hover{transform:translateY(-2px);border-color:var(--petrol)}
+.rcard .num{font:700 26px/1 var(--head);color:var(--ochre)}
+.rcard .iv{font-size:13px;color:var(--muted)}
+.rcard h3{margin:4px 0 0;font-size:16px}
+.rcard p{font-size:14px;color:var(--muted);margin:0}
+.badge{align-self:flex-start;margin-top:auto;font-size:13px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--surface-2);color:var(--muted)}
+.rcard.done .badge{background:var(--ok-soft);color:var(--ok)}
+@media (max-width:980px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.cards{grid-template-columns:1fr}}
+
+/* Sections as drilling intervals */
+section.iv-sec{padding:56px 0 24px}
+.iv-grid{display:grid;grid-template-columns:120px minmax(0,1fr);gap:0 32px}
+.iv-aside{position:relative}
+.iv-aside::before{content:"";position:absolute;left:28px;top:0;bottom:-24px;border-left:2px dashed var(--line)}
+.iv-tag{position:sticky;top:calc(var(--hh) + 24px);background:var(--bg);padding:4px 0 10px}
+.iv-tag .n{display:block;font:700 44px/1 var(--head);color:var(--ochre)}
+.iv-tag .d{display:block;font-size:13px;color:var(--muted);margin-top:6px}
+.iv-tag .bit{display:block;width:14px;height:14px;margin:10px 0 0 22px;background:var(--petrol);transform:rotate(45deg);border-radius:2px}
+.iv-body{min-width:0}
+.iv-body > p.lead{margin-bottom:1.4em}
+@media (max-width:760px){
+  .iv-grid{grid-template-columns:1fr}
+  .iv-aside::before{display:none}
+  .iv-tag{position:static;display:flex;align-items:baseline;gap:12px;border-bottom:2px dashed var(--line);margin-bottom:16px}
+  .iv-tag .n{font-size:30px}.iv-tag .bit{display:none}
+}
+
+/* Components */
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0 0 1em;list-style:none}
+.chips li{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:15px}
+.chips li b{display:block;font-size:15px}
+.chips li span{color:var(--muted);font-size:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 1.2em}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 1.2em}
+@media (max-width:900px){.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.grid3,.grid2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.card h4{margin:0 0 6px;color:var(--petrol)}
+.card p{margin:0;font-size:15px;color:var(--muted)}
+.card .k{font:700 13px/1 var(--head);color:var(--ochre);display:block;margin-bottom:8px}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:0 0 1.4em}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+th{font-weight:600;background:var(--surface-2);color:var(--ink);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+details.acc{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin:0 0 8px}
+details.acc summary{cursor:pointer;list-style:none;padding:14px 48px 14px 16px;font-weight:600;position:relative}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{content:"";position:absolute;right:18px;top:50%;width:9px;height:9px;border-right:2px solid var(--petrol);border-bottom:2px solid var(--petrol);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+details.acc[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+details.acc summary:hover{color:var(--petrol)}
+details.acc .acc-b{padding:0 16px 14px}
+details.acc .acc-b p,details.acc .acc-b li{font-size:16px}
+details.acc .acc-b ul{margin:0 0 .6em;padding-left:20px}
+.note{border-left:4px solid var(--ochre);background:var(--ochre-soft);border-radius:0 12px 12px 0;padding:14px 18px;margin:0 0 1.4em}
+.note.bad{border-color:var(--bad);background:var(--bad-soft)}
+.note.info{border-color:var(--petrol);background:var(--petrol-soft)}
+.note h4{margin:0 0 6px;font-size:15px}
+.note p,.note li{font-size:16px}
+.note ul{margin:0;padding-left:20px}
+.note p:last-child{margin:0}
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:0 0 1.4em}
+ol.steps li{counter-increment:s;position:relative;padding:0 0 18px 52px}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:34px;height:34px;border-radius:50%;background:var(--petrol);color:var(--petrol-ink);display:grid;place-items:center;font:700 14px/1 var(--head)}
+ol.steps li::after{content:"";position:absolute;left:16px;top:34px;bottom:2px;width:2px;background:var(--line)}
+ol.steps li:last-child::after{display:none}
+ol.steps b{display:block}
+ol.steps span{color:var(--muted);font-size:15px}
+.formula{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:0 0 1.4em}
+.formula .f{font:700 26px/1 var(--head);color:var(--petrol);white-space:nowrap}
+.formula p{margin:0;font-size:15px;color:var(--muted)}
+.params{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 1.2em}
+.params div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.params b{font:700 24px/1 var(--head);color:var(--ochre);display:block}
+.params span{font-size:14px;color:var(--muted)}
+@media (max-width:560px){.params{grid-template-columns:1fr}}
+figure.fig{margin:0 0 1.4em;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
+figure.fig svg{display:block;width:100%;height:auto;max-height:340px}
+figure.fig figcaption{font-size:14px;color:var(--muted);margin-top:6px}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:0;margin:0 0 1.4em;list-style:none}
+.flow li{background:var(--petrol-soft);color:var(--ink);border-radius:8px;padding:6px 10px;font-size:14px;font-weight:500}
+.flow li+li::before{content:"→";color:var(--ochre);margin-right:8px;font-weight:700}
+.skin{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:0 0 1.4em}
+.skin div{padding:12px;font-size:14px;background:var(--surface)}
+.skin div b{display:block;font:700 18px/1.2 var(--head)}
+.skin .s1 b{color:var(--ok)}.skin .s2 b{color:var(--petrol)}.skin .s3 b{color:var(--bad)}
+.skin .s1{border-top:4px solid var(--ok)}.skin .s2{border-top:4px solid var(--petrol)}.skin .s3{border-top:4px solid var(--bad)}
+@media (max-width:520px){.skin{grid-template-columns:1fr}}
+
+/* Calculator */
+.calc{background:var(--surface);border:2px solid var(--petrol);border-radius:16px;padding:20px;margin:0 0 1.6em;box-shadow:var(--shadow)}
+.calc h3{margin-top:0}
+.calc-in{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.calc label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.calc label small{font-weight:400;color:var(--muted)}
+.calc input{width:100%;font:500 18px var(--body);padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.calc input:focus{outline:none;border-color:var(--petrol);box-shadow:0 0 0 3px var(--petrol-soft)}
+.calc input[aria-invalid="true"]{border-color:var(--bad)}
+.calc-out{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.calc-out div{background:var(--surface-2);border-radius:12px;padding:12px}
+.calc-out span{display:block;font-size:13px;color:var(--muted)}
+.calc-out b{font:700 22px/1.25 var(--head);color:var(--ink);font-variant-numeric:tabular-nums}
+.calc-out em{font-style:normal;font-size:14px;color:var(--muted)}
+.verdict{border-radius:12px;padding:12px 14px;font-size:16px;border-left:4px solid var(--petrol);background:var(--petrol-soft)}
+.verdict.ok{border-color:var(--ok);background:var(--ok-soft)}
+.verdict.warn{border-color:var(--ochre);background:var(--ochre-soft)}
+.verdict.bad{border-color:var(--bad);background:var(--bad-soft)}
+@media (max-width:640px){.calc-in,.calc-out{grid-template-columns:1fr}}
+
+/* Quiz */
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;margin:24px 0 16px}
+.quiz h3{margin-top:0;display:flex;align-items:center;gap:10px}
+.q{border-top:1px solid var(--line);padding:16px 0}
+.q:first-of-type{border-top:0;padding-top:4px}
+.q p.qt{font-weight:600;margin-bottom:10px}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;font:400 16px/1.4 var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 14px;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--petrol)}
+.opt:disabled{cursor:default}
+.opt.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ink);font-weight:600}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--ink)}
+.opt.right::before{content:"✓ ";color:var(--ok);font-weight:700}
+.opt.wrong::before{content:"✕ ";color:var(--bad);font-weight:700}
+.expl{margin:10px 0 0;font-size:15px;color:var(--muted)}
+.score{font-weight:600;margin:4px 0 0}
+.done-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:8px 0 0}
+.mark{background:var(--surface);color:var(--petrol);border:2px solid var(--petrol)}
+.mark[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:#fff}
+.done-row small{color:var(--muted)}
+
+/* Glossary */
+.plain-sec{padding:56px 0 24px}
+.search{position:relative;max-width:520px;margin:0 0 18px}
+.search input{width:100%;font:400 17px var(--body);padding:12px 14px 12px 44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.search input:focus{outline:none;border-color:var(--petrol);box-shadow:0 0 0 3px var(--petrol-soft)}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0;padding:0}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.term dt{font:700 15px/1.3 var(--head);color:var(--petrol);margin-bottom:6px}
+.term dd{margin:0;font-size:15px;color:var(--muted)}
+.empty{padding:20px;border:1px dashed var(--line);border-radius:12px;color:var(--muted)}
+@media (max-width:900px){.terms{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.terms{grid-template-columns:1fr}}
+ol.src{padding-left:22px}
+ol.src li{margin-bottom:8px;font-size:16px}
+footer{border-top:1px solid var(--line);padding:24px 0 calc(24px + env(safe-area-inset-bottom));color:var(--muted);font-size:14px;margin-top:40px}
+footer p{max-width:none}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Бурение.Старт — на главную">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" fill="var(--petrol)"/><path d="M15 5v14" stroke="var(--petrol-ink)" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="3 3"/><path d="M10.5 18h9L15 25z" fill="var(--ochre)"/></svg>
+      <span>Бурение<b>.</b>Старт</span>
+    </a>
+    <nav class="menu" id="menu" aria-label="Разделы курса">
+      <ul>
+        <li><a href="#s1">Бурение</a></li>
+        <li><a href="#s2">Растворы</a></li>
+        <li><a href="#s3">Крепление</a></li>
+        <li><a href="#s4">Заканчивание</a></li>
+        <li><a href="#glossary">Словарь</a></li>
+        <li><a href="#sources">Источники</a></li>
+      </ul>
+    </nav>
+    <button class="icon-btn theme-btn" id="themeBtn" type="button" aria-label="Переключить тему">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <button class="icon-btn burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <div class="depth" aria-hidden="true"><i id="depthBar"></i></div>
+</header>
+<div class="depth-label" id="depthLabel" aria-hidden="true">0 м</div>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Вводный курс для молодых специалистов</div>
+      <h1>Основы бурения нефтяных и&nbsp;газовых скважин</h1>
+      <p class="lead">Пройдём путь скважины от устья до продуктивного пласта: как её бурят, чем промывают, как крепят и как вводят в эксплуатацию.</p>
+      <div class="btns">
+        <a class="btn btn-primary" href="#s1">Начать с раздела 1 ↓</a>
+        <a class="btn btn-ghost" href="#calc">Калькулятор давления</a>
+      </div>
+      <ul class="stats">
+        <li><b>4</b> раздела</li>
+        <li><b>12</b> вопросов</li>
+        <li><b>34</b> термина</li>
+        <li>работает без сети</li>
+      </ul>
+    </div>
+    <figure class="well">
+      <svg viewBox="0 0 560 640" role="img" aria-labelledby="wellT wellD">
+        <title id="wellT">Схема конструкции скважины</title>
+        <desc id="wellD">Разрез скважины через слои пород. На устье установлено противовыбросовое оборудование. От устья вниз спущены вложенные друг в друга колонны: направление, кондуктор, промежуточная и эксплуатационная. Пространство между колоннами и породой заполнено цементным кольцом. В продуктивном пласте эксплуатационная колонна перфорирована.</desc>
+        <rect x="0" y="90" width="560" height="70" fill="var(--rock1)"/>
+        <rect x="0" y="160" width="560" height="120" fill="var(--rock2)"/>
+        <rect x="0" y="280" width="560" height="110" fill="var(--rock3)"/>
+        <rect x="0" y="390" width="560" height="100" fill="var(--rock4)"/>
+        <rect x="0" y="490" width="560" height="50" fill="var(--rock5)"/>
+        <rect x="0" y="540" width="560" height="45" fill="var(--pay)"/>
+        <rect x="0" y="585" width="560" height="55" fill="var(--rock2)"/>
+        <g class="sv-rock"><text x="10" y="128">Наносы</text><text x="10" y="224">Глины</text><text x="10" y="338">Песчаники</text><text x="10" y="444">Известняки</text><text x="10" y="519">Аргиллиты</text><text x="10" y="567">Пласт</text><text x="10" y="616">Глины</text></g>
+        <line x1="0" y1="90" x2="560" y2="90" stroke="var(--steel)" stroke-width="2"/>
+        <!-- cement + casings, outer to inner (cx = 200) -->
+        <rect x="129" y="90" width="142" height="56" fill="var(--cement)"/>
+        <path d="M138 90V140M262 90V140" stroke="var(--steel)" stroke-width="3"/>
+        <rect x="143" y="90" width="114" height="186" fill="var(--cement)" opacity=".85"/>
+        <path d="M152 90V270M248 90V270" stroke="var(--steel)" stroke-width="3"/>
+        <rect x="157" y="90" width="86" height="386" fill="var(--cement)" opacity=".7"/>
+        <path d="M166 90V470M234 90V470" stroke="var(--steel)" stroke-width="3"/>
+        <rect x="171" y="90" width="58" height="521" fill="var(--cement)" opacity=".55"/>
+        <rect x="180" y="90" width="40" height="515" fill="var(--mud)"/>
+        <path d="M180 90V605M220 90V605M180 605H220" stroke="var(--steel)" stroke-width="3" fill="none"/>
+        <g fill="var(--steel)"><path d="M138 140l-6 0 6-7zM262 140l6 0-6-7zM152 270l-6 0 6-7zM248 270l6 0-6-7zM166 470l-6 0 6-7zM234 470l6 0-6-7z"/></g>
+        <g stroke="var(--ochre)" stroke-width="3" stroke-linecap="round"><path d="M180 551h-32M180 563h-36M180 575h-32M220 551h32M220 563h36M220 575h32"/></g>
+        <!-- BOP -->
+        <rect x="172" y="40" width="56" height="50" rx="3" fill="var(--petrol)"/>
+        <path d="M172 57h56M172 73h56" stroke="var(--petrol-ink)" stroke-width="1.5" opacity=".6"/>
+        <rect x="160" y="34" width="80" height="8" rx="2" fill="var(--steel)"/>
+        <!-- labels -->
+        <g class="sv-lead"><path d="M228 52H392"/><path d="M262 132H392"/><path d="M248 262H392"/><path d="M239 340H392"/><path d="M234 462H392"/><path d="M256 563H392"/><path d="M220 600H392"/></g>
+        <g><circle cx="392" cy="52" r="3" fill="var(--ochre)"/><circle cx="392" cy="132" r="3" fill="var(--ochre)"/><circle cx="392" cy="262" r="3" fill="var(--ochre)"/><circle cx="392" cy="340" r="3" fill="var(--ochre)"/><circle cx="392" cy="462" r="3" fill="var(--ochre)"/><circle cx="392" cy="563" r="3" fill="var(--ochre)"/><circle cx="392" cy="600" r="3" fill="var(--ochre)"/></g>
+        <text class="sv-lbl" x="402" y="50">ПВО</text><text class="sv-sub" x="402" y="65">герметизация устья</text>
+        <text class="sv-lbl" x="402" y="130">Направление</text><text class="sv-sub" x="402" y="145">10–50 м</text>
+        <text class="sv-lbl" x="402" y="260">Кондуктор</text><text class="sv-sub" x="402" y="275">300–800 м</text>
+        <text class="sv-lbl" x="402" y="338">Цементное кольцо</text><text class="sv-sub" x="402" y="353">изоляция пластов</text>
+        <text class="sv-lbl" x="402" y="460">Промежуточная</text><text class="sv-sub" x="402" y="475">зоны осложнений</text>
+        <text class="sv-lbl" x="402" y="561">Перфорация</text><text class="sv-sub" x="402" y="576">продуктивный пласт</text>
+        <text class="sv-lbl" x="402" y="606">Эксплуатационная</text><text class="sv-sub" x="402" y="621">до забоя</text>
+      </svg>
+      <figcaption>Типовая конструкция скважины (масштаб условный). Каждая следующая колонна меньше по диаметру и спускается глубже.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="route" aria-labelledby="routeH">
+  <div class="wrap">
+    <div class="route-head">
+      <h2 id="routeH">Маршрут курса</h2>
+      <div class="progress">
+        <div class="bar" role="progressbar" aria-label="Прогресс курса" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" id="progBar"><i id="progFill"></i></div>
+        <p id="progText" aria-live="polite">Пройдено 0 из 4</p>
+      </div>
+    </div>
+    <div class="cards">
+      <a class="rcard" href="#s1" data-card="s1"><span class="num">01</span><span class="iv">Интервал 0–800 м</span><h3>Технология бурения</h3><p>Буровая установка, колонна, долота, режимы.</p><span class="badge">Не пройден</span></a>
+      <a class="rcard" href="#s2" data-card="s2"><span class="num">02</span><span class="iv">Интервал 800–1800 м</span><h3>Буровые промывочные жидкости</h3><p>Функции, параметры, давление, реагенты.</p><span class="badge">Не пройден</span></a>
+      <a class="rcard" href="#s3" data-card="s3"><span class="num">03</span><span class="iv">Интервал 1800–2700 м</span><h3>Крепление скважин</h3><p>Колонны, оснастка, цементирование.</p><span class="badge">Не пройден</span></a>
+      <a class="rcard" href="#s4" data-card="s4"><span class="num">04</span><span class="iv">Интервал 2700–3000 м</span><h3>Заканчивание скважин</h3><p>Вскрытие, перфорация, освоение.</p><span class="badge">Не пройден</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 1 ============ -->
+<section class="iv-sec" id="s1" aria-labelledby="h1s">
+  <div class="wrap iv-grid">
+    <div class="iv-aside"><div class="iv-tag"><span class="n">01</span><span class="d">0–800 м</span><span class="bit"></span></div></div>
+    <div class="iv-body">
+      <h2 id="h1s">Технология бурения</h2>
+      <p class="lead"><strong>Бурение</strong> — процесс сооружения скважины: горную породу разрушают на забое, а продукты разрушения (шлам) выносят на поверхность. В нефтегазовой отрасли применяют <strong>вращательный способ</strong>: долото вращается под осевой нагрузкой, а промывочная жидкость очищает забой.</p>
+
+      <h3>Скважины по назначению</h3>
+      <ul class="chips">
+        <li><b>Опорные</b><span>изучение геологии новых районов</span></li>
+        <li><b>Параметрические</b><span>уточнение строения и перспектив</span></li>
+        <li><b>Поисковые</b><span>открытие новых залежей</span></li>
+        <li><b>Разведочные</b><span>оценка запасов залежи</span></li>
+        <li><b>Эксплуатационные</b><span>добыча, нагнетание, наблюдение</span></li>
+      </ul>
+
+      <h3>Способы бурения</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Способ</th><th>Что вращает долото</th><th>Особенности</th><th>Применение</th></tr></thead>
+        <tbody>
+          <tr><td>Роторный</td><td>Ротор на поверхности вращает всю колонну</td><td>Простота; потери мощности и износ труб на вращение колонны</td><td>Вертикальные скважины средней глубины</td></tr>
+          <tr><td>С верхним приводом (СВП)</td><td>Двигатель на талевой системе вращает колонну сверху</td><td>Наращивание свечами, проработка с вращением и промывкой, меньше риск прихвата</td><td>Глубокие, наклонные, морские скважины</td></tr>
+          <tr><td>Турбинный</td><td>Забойная турбина, которую вращает поток раствора</td><td>Высокая частота вращения, колонна не вращается</td><td>Глубокие вертикальные скважины</td></tr>
+          <tr><td>ВЗД</td><td>Винтовой забойный двигатель (пара ротор — статор)</td><td>Большой момент на низких оборотах; с отклонителем управляет траекторией</td><td>Наклонно-направленные и горизонтальные</td></tr>
+          <tr><td>Электробур</td><td>Погружной электродвигатель над долотом</td><td>Контроль работы на забое; сложный токоподвод</td><td>Ограниченно</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Системы буровой установки</h3>
+      <details class="acc" open><summary>Подъёмная система</summary><div class="acc-b"><p>Спускает и поднимает колонну, держит её на весу. Состав: вышка или мачта, буровая лебёдка, талевая система (кронблок, талевый блок, крюк, талевый канат).</p></div></details>
+      <details class="acc"><summary>Вращательная система</summary><div class="acc-b"><p>Передаёт вращение колонне: ротор с ведущей трубой или верхний привод. Вертлюг подаёт раствор во вращающуюся колонну.</p></div></details>
+      <details class="acc"><summary>Циркуляционная система</summary><div class="acc-b"><p>Буровые насосы, манифольд, стояк, буровой рукав, ёмкости. Система очистки: вибросита, пескоотделитель, илоотделитель, дегазатор, центрифуга.</p></div></details>
+      <details class="acc"><summary>Противовыбросовое оборудование (ПВО)</summary><div class="acc-b"><p>Герметизирует устье при ГНВП: универсальный (кольцевой) превентор, плашечные превенторы (трубные, глухие, срезающие), манифольды дросселирования и глушения, пульт управления.</p></div></details>
+      <details class="acc"><summary>Силовая система</summary><div class="acc-b"><p>Дизельные двигатели или электропривод от сети, генераторы, трансмиссии. Питает лебёдку, ротор или СВП и насосы.</p></div></details>
+      <details class="acc"><summary>Системы контроля</summary><div class="acc-b"><p>Станция ГТИ и датчики: вес на крюке, давление на стояке, расход на входе и выходе, уровень в ёмкостях, газосодержание. Это основа раннего обнаружения осложнений.</p></div></details>
+
+      <h3>Бурильная колонна и КНБК</h3>
+      <p><strong>Бурильная колонна</strong> соединяет долото с поверхностью. Она передаёт вращение и нагрузку и служит каналом для раствора. Её составляют бурильные трубы (стальные или легкосплавные), замки, переводники и <strong>УБТ</strong> — утяжелённые трубы, которые создают нагрузку на долото и держат колонну в растянутом состоянии.</p>
+      <p><strong>КНБК</strong> (компоновка низа бурильной колонны) определяет поведение долота и траекторию. Типовой состав снизу вверх: долото → калибратор → забойный двигатель → центратор → телесистема MWD/LWD → УБТ → яс.</p>
+
+      <h3>Породоразрушающий инструмент</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Тип</th><th>Как разрушает породу</th><th>Породы</th><th>Особенности</th></tr></thead>
+        <tbody>
+          <tr><td>Шарошечные</td><td>Дробление и скалывание зубьями шарошек</td><td>От мягких до крепких</td><td>Фрезерованные зубья или твердосплавные вставки; ресурс ограничен опорами</td></tr>
+          <tr><td>PDC</td><td>Резание поликристаллическими алмазными резцами</td><td>Мягкие и средние, однородные</td><td>Нет подвижных частей, высокая механическая скорость</td></tr>
+          <tr><td>Алмазные</td><td>Истирание и микрорезание</td><td>Крепкие абразивные</td><td>Работают на высоких оборотах, часто с турбобуром</td></tr>
+          <tr><td>Бурильные головки</td><td>Разрушают породу по кольцу</td><td>Любые</td><td>Отбор керна: столбик породы уходит в колонковую трубу</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Режим бурения и показатели</h3>
+      <div class="params">
+        <div><b>G</b><span>осевая нагрузка на долото, кН</span></div>
+        <div><b>n</b><span>частота вращения долота, об/мин</span></div>
+        <div><b>Q</b><span>расход промывочной жидкости, л/с</span></div>
+      </div>
+      <p>Эффективность оценивают по <strong>механической скорости</strong> (метры за час чистого бурения), <strong>проходке на долото</strong>, <strong>рейсовой скорости</strong> (с учётом спуско-подъёма), коммерческой скорости и стоимости метра проходки.</p>
+
+      <h3>Профили скважин</h3>
+      <figure class="fig">
+        <svg viewBox="0 0 480 200" role="img" aria-label="Четыре профиля скважин: вертикальный, наклонно-направленный J-образный, S-образный и горизонтальный">
+          <rect x="360" y="128" width="120" height="22" fill="var(--pay)"/>
+          <line x1="0" y1="20" x2="480" y2="20" stroke="var(--steel)" stroke-width="2"/>
+          <g stroke="var(--line)" stroke-dasharray="3 4"><path d="M120 20V180M240 20V180M360 20V180"/></g>
+          <g fill="none" stroke="var(--petrol)" stroke-width="4" stroke-linecap="round">
+            <path d="M60 20V165"/>
+            <path d="M175 20V70Q175 110 200 135L215 165"/>
+            <path d="M290 20V55Q290 85 310 100Q330 118 330 145V165"/>
+            <path d="M385 20V90Q385 139 430 139H468"/>
+          </g>
+          <g class="sv-sub" text-anchor="middle" style="font-size:12px"><text x="60" y="194">Вертикальный</text><text x="180" y="194">Наклонный (J)</text><text x="300" y="194">S-образный</text><text x="420" y="194">Горизонтальный</text></g>
+        </svg>
+        <figcaption>Наклонный профиль: вертикальный участок → набор зенитного угла → стабилизация. S-образный добавляет участок снижения угла. Горизонтальный ствол проходит вдоль пласта.</figcaption>
+      </figure>
+
+      <div class="note bad">
+        <h4>Запомните: признаки ГНВП</h4>
+        <ul>
+          <li>рост объёма раствора в приёмных ёмкостях;</li>
+          <li>рост расхода на выходе при неизменной подаче насосов;</li>
+          <li>перелив при остановленных насосах;</li>
+          <li>при подъёме доливается меньше раствора, чем расчётно;</li>
+          <li>резкий рост механической скорости, снижение плотности раствора на выходе, газ.</li>
+        </ul>
+        <p style="margin-top:8px">Первоочередные действия: прекратить углубление, остановить насосы, проверить перелив и герметизировать устье по сигналу «Выброс» согласно ПЛА и инструкции вахты. Сразу доложить мастеру.</p>
+      </div>
+
+      <div class="quiz" data-quiz="s1"></div>
+      <div class="done-row"><button class="btn mark" type="button" data-mark="s1" aria-pressed="false">Отметить раздел пройденным</button><small>Отметка хранится в этом браузере</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 2 ============ -->
+<section class="iv-sec" id="s2" aria-labelledby="h2s">
+  <div class="wrap iv-grid">
+    <div class="iv-aside"><div class="iv-tag"><span class="n">02</span><span class="d">800–1800 м</span><span class="bit"></span></div></div>
+    <div class="iv-body">
+      <h2 id="h2s">Буровые промывочные жидкости</h2>
+      <p class="lead">Буровой раствор называют «кровью» скважины. Он циркулирует по замкнутому кругу: насос → колонна → долото → затрубное пространство → система очистки → ёмкости.</p>
+
+      <h3>Шесть функций раствора</h3>
+      <div class="grid3">
+        <div class="card"><span class="k">01</span><h4>Вынос шлама</h4><p>Очищает забой и поднимает выбуренную породу.</p></div>
+        <div class="card"><span class="k">02</span><h4>Удержание шлама</h4><p>Держит частицы во взвеси при остановке циркуляции.</p></div>
+        <div class="card"><span class="k">03</span><h4>Контроль давления</h4><p>Столб раствора уравновешивает пластовое давление.</p></div>
+        <div class="card"><span class="k">04</span><h4>Устойчивость стенок</h4><p>Корка и ингибиторы не дают стволу обваливаться.</p></div>
+        <div class="card"><span class="k">05</span><h4>Охлаждение и смазка</h4><p>Снижает износ долота и трение колонны.</p></div>
+        <div class="card"><span class="k">06</span><h4>Передача энергии</h4><p>Вращает забойный двигатель, передаёт сигналы телеметрии.</p></div>
+      </div>
+
+      <h3>Классификация</h3>
+      <div class="grid3">
+        <div class="card"><h4>На водной основе</h4><p>Глинистые, полимерные, ингибированные (калиевые, известковые), солевые. Самые распространённые и недорогие.</p></div>
+        <div class="card"><h4>На углеводородной основе (РУО)</h4><p>Дизельное или минеральное масло, инвертные эмульсии. Для неустойчивых глин, высоких температур, вскрытия пластов.</p></div>
+        <div class="card"><h4>Газообразные агенты</h4><p>Воздух, азот, пены, аэрированные жидкости. Для пластов с аномально низким давлением.</p></div>
+      </div>
+
+      <h3>Параметры раствора</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Параметр</th><th>Единицы</th><th>Прибор</th><th>На что влияет</th></tr></thead>
+        <tbody>
+          <tr><td>Плотность ρ</td><td>г/см³</td><td>Ареометр, рычажные весы</td><td>Гидростатическое давление, контроль пласта</td></tr>
+          <tr><td>Условная вязкость (УВ)</td><td>с</td><td>Воронка ВБР-1 / Марша</td><td>Текучесть, оперативный контроль</td></tr>
+          <tr><td>Пластическая вязкость η</td><td>мПа·с</td><td>Ротационный вискозиметр</td><td>Гидравлические потери, содержание твёрдой фазы</td></tr>
+          <tr><td>ДНС τ₀</td><td>дПа</td><td>Ротационный вискозиметр</td><td>Выносящая способность раствора</td></tr>
+          <tr><td>СНС θ₁/θ₁₀</td><td>дПа</td><td>Ротационный вискозиметр, прибор СНС</td><td>Удержание шлама, пусковые давления</td></tr>
+          <tr><td>Фильтрация Ф</td><td>см³/30 мин</td><td>Фильтр-пресс</td><td>Толщина корки, загрязнение пласта, прихваты</td></tr>
+          <tr><td>pH</td><td>—</td><td>pH-метр, индикаторная бумага</td><td>Работа реагентов, коррозия</td></tr>
+          <tr><td>Содержание песка</td><td>%</td><td>Отстойник, сито</td><td>Абразивный износ насосов и долот</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Гидростатическое давление</h3>
+      <div class="formula">
+        <span class="f">P = ρ · g · H</span>
+        <p>ρ — плотность, кг/м³; g = 9,81 м/с²; H — <strong>вертикальная</strong> глубина, м. Пример: 1200 · 9,81 · 2000 = 23,54 МПа.</p>
+      </div>
+      <div class="note">
+        <h4>Нормы репрессии (ФНП, приказ Ростехнадзора № 534)</h4>
+        <p>Давление столба раствора должно превышать пластовое:<br>• до 1200 м — на 10 % от Pпл, но не более 1,5 МПа;<br>• глубже 1200 м — на 5 % от Pпл, но не более 2,5 МПа.<br>Сверяйте значения с действующей редакцией документа.</p>
+      </div>
+
+      <div class="calc" id="calc" aria-labelledby="calcH">
+        <h3 id="calcH">Калькулятор гидростатического давления</h3>
+        <div class="calc-in">
+          <div><label for="cRho">Плотность ρ <small>г/см³ (0,8–2,6)</small></label><input id="cRho" inputmode="decimal" autocomplete="off" value="1,18"></div>
+          <div><label for="cH">Глубина H <small>м, по вертикали</small></label><input id="cH" inputmode="decimal" autocomplete="off" value="2500"></div>
+          <div><label for="cP">Пластовое Pпл <small>МПа</small></label><input id="cP" inputmode="decimal" autocomplete="off" value="26"></div>
+        </div>
+        <div class="calc-out">
+          <div><span>Гидростатическое P</span><b id="oP">—</b></div>
+          <div><span>Превышение ΔP</span><b id="oD">—</b> <em id="oDp"></em></div>
+          <div><span>Минимальная плотность</span><b id="oR">—</b></div>
+        </div>
+        <div class="verdict" id="verdict" role="status" aria-live="polite">Введите данные.</div>
+      </div>
+
+      <h3>Химические реагенты и материалы</h3>
+      <details class="acc" open><summary>Утяжелители и структурообразователи</summary><div class="acc-b"><p>Барит, гематит, карбонат кальция повышают плотность. Бентонит и биополимеры (ксантан) создают структуру для удержания шлама.</p></div></details>
+      <details class="acc"><summary>Понизители фильтрации и разжижители</summary><div class="acc-b"><p>КМЦ, ПАЦ, крахмал снижают фильтрацию. Лигносульфонаты понижают вязкость и СНС.</p></div></details>
+      <details class="acc"><summary>Ингибиторы и регуляторы pH</summary><div class="acc-b"><p>KCl, силикаты, полигликоли подавляют набухание глин. Каустическая и кальцинированная сода регулируют pH.</p></div></details>
+      <details class="acc"><summary>Специальные добавки</summary><div class="acc-b"><p>Смазочные добавки, кольматанты против поглощений, пеногасители, бактерициды.</p></div></details>
+
+      <div class="quiz" data-quiz="s2"></div>
+      <div class="done-row"><button class="btn mark" type="button" data-mark="s2" aria-pressed="false">Отметить раздел пройденным</button><small>Отметка хранится в этом браузере</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 3 ============ -->
+<section class="iv-sec" id="s3" aria-labelledby="h3s">
+  <div class="wrap iv-grid">
+    <div class="iv-aside"><div class="iv-tag"><span class="n">03</span><span class="d">1800–2700 м</span><span class="bit"></span></div></div>
+    <div class="iv-body">
+      <h2 id="h3s">Крепление скважин</h2>
+      <p class="lead"><strong>Конструкция скважины</strong> — число и диаметры обсадных колонн, глубины их спуска, диаметры долот и интервалы цементирования. Её выбирают по <strong>совмещённому графику давлений</strong>.</p>
+
+      <figure class="fig">
+        <svg viewBox="0 0 420 270" role="img" aria-label="Совмещённый график давлений: с глубиной растут кривые пластового давления и давления гидроразрыва; колонны спускают там, где окно между ними становится слишком узким">
+          <path d="M60 30 L110 30 L130 110 L175 175 L215 250 L330 250 L300 175 L250 110 L220 30 Z" fill="var(--petrol-soft)"/>
+          <path d="M60 30 L60 250 M60 250 L400 250" stroke="var(--muted)" fill="none"/>
+          <path d="M110 30 L130 110 L175 175 L215 250" stroke="var(--petrol)" stroke-width="3" fill="none"/>
+          <path d="M220 30 L250 110 L300 175 L330 250" stroke="var(--ochre)" stroke-width="3" fill="none"/>
+          <g stroke="var(--steel)" stroke-width="1.5" stroke-dasharray="5 4"><path d="M60 95H380M60 165H380M60 240H380"/></g>
+          <g class="sv-sub" style="font-size:11px"><text x="66" y="90">кондуктор</text><text x="66" y="160">промежуточная</text><text x="66" y="235">эксплуатационная</text></g>
+          <text class="sv-lbl" x="134" y="62" style="font-size:12px;fill:var(--petrol)">Pпл</text>
+          <text class="sv-lbl" x="245" y="62" style="font-size:12px;fill:var(--ochre-ink)">Pгрп</text>
+          <text class="sv-sub" x="230" y="266" text-anchor="middle">эквивалент плотности, г/см³ →</text>
+          <text class="sv-sub" x="22" y="140" transform="rotate(-90 22 140)" text-anchor="middle">глубина ↓</text>
+        </svg>
+        <figcaption>Плотность раствора должна оставаться в «окне» между пластовым давлением и давлением гидроразрыва. Где окно для разных интервалов несовместимо, их разделяют колонной.</figcaption>
+      </figure>
+
+      <h3>Обсадные колонны</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Колонна</th><th>Назначение</th><th>Типичная глубина</th></tr></thead>
+        <tbody>
+          <tr><td>Направление</td><td>Защищает устье от размыва, направляет поток в систему очистки</td><td>10–50 м</td></tr>
+          <tr><td>Кондуктор</td><td>Перекрывает неустойчивые породы и пресные воды; на нём монтируют ПВО</td><td>300–800 м</td></tr>
+          <tr><td>Промежуточная</td><td>Изолирует зоны поглощений, обвалов, АВПД, несовместимые по условиям бурения</td><td>По проекту</td></tr>
+          <tr><td>Эксплуатационная</td><td>Изолирует продуктивные пласты, служит каналом для добычи или закачки</td><td>До забоя</td></tr>
+          <tr><td>Хвостовик</td><td>Колонна, подвешенная в предыдущей и не доходящая до устья; экономит металл</td><td>Нижний интервал</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Обсадные трубы</h3>
+      <p>Трубы выпускают по <strong>ГОСТ 632-80</strong> (группы прочности Д, К, Е, Л, М, Р, Т) и <strong>ГОСТ 31446 / API 5CT</strong> (J55, K55, N80, L80, P110 и др.). Колонну рассчитывают на три нагрузки с коэффициентами запаса:</p>
+      <div class="params">
+        <div><b>Смятие</b><span>наружное избыточное давление</span></div>
+        <div><b>Разрыв</b><span>внутреннее избыточное давление</span></div>
+        <div><b>Растяжение</b><span>собственный вес колонны</span></div>
+      </div>
+
+      <h3>Технологическая оснастка</h3>
+      <div class="grid3">
+        <div class="card"><h4>Башмак</h4><p>Направляет колонну по стволу, защищает её низ.</p></div>
+        <div class="card"><h4>Обратный клапан</h4><p>Не даёт цементу вернуться в колонну.</p></div>
+        <div class="card"><h4>Упорное кольцо</h4><p>Место посадки продавочной пробки — сигнал «стоп».</p></div>
+        <div class="card"><h4>Центраторы</h4><p>Держат колонну по центру ствола для ровного цементного кольца.</p></div>
+        <div class="card"><h4>Скребки</h4><p>Срезают фильтрационную корку со стенок.</p></div>
+        <div class="card"><h4>Пробки</h4><p>Нижняя разделяет раствор и цемент, верхняя — цемент и продавку.</p></div>
+      </div>
+
+      <h3>Одноступенчатое цементирование</h3>
+      <ol class="steps">
+        <li><b>Подготовка ствола</b><span>Проработка, промывка, доводка параметров раствора.</span></li>
+        <li><b>Спуск колонны</b><span>С оснасткой и промежуточными промывками.</span></li>
+        <li><b>Промывка через башмак</b><span>Не менее 1–2 циклов до выравнивания параметров.</span></li>
+        <li><b>Буферная жидкость</b><span>Разделяет раствор и цемент, смывает корку.</span></li>
+        <li><b>Нижняя пробка и цемент</b><span>Закачка расчётного объёма тампонажного раствора.</span></li>
+        <li><b>Верхняя пробка</b><span>Пуск продавочной пробки.</span></li>
+        <li><b>Продавка</b><span>До посадки пробки на упорное кольцо: «стоп» и рост давления.</span></li>
+        <li><b>Ожидание затвердевания</b><span>Затем опрессовка колонны и оценка качества цементирования (АКЦ).</span></li>
+      </ol>
+      <details class="acc" open><summary>Другие способы цементирования</summary><div class="acc-b"><ul>
+        <li><strong>Двухступенчатое</strong> — через муфту ступенчатого цементирования, при большой высоте подъёма и риске поглощения;</li>
+        <li><strong>Манжетное</strong> — цемент не попадает в зону продуктивного пласта;</li>
+        <li><strong>Обратное</strong> — цемент закачивают в затрубье с устья;</li>
+        <li><strong>Цементирование хвостовика</strong> — через бурильные трубы и подвеску.</li>
+      </ul></div></details>
+
+      <h3>Тампонажные материалы</h3>
+      <p>Основа — портландцемент тампонажный (ПЦТ, ГОСТ 1581-96) и цементы по API Spec 10A (классы A–H; чаще всего G и H). Свойства регулируют добавками:</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Добавка</th><th>Пример</th><th>Зачем</th></tr></thead>
+        <tbody>
+          <tr><td>Ускорители</td><td>CaCl₂</td><td>Сократить сроки схватывания в холодных интервалах</td></tr>
+          <tr><td>Замедлители</td><td>Лигносульфонаты</td><td>Сохранить подвижность при высокой температуре</td></tr>
+          <tr><td>Облегчающие</td><td>Бентонит, микросферы</td><td>Снизить плотность при риске поглощения</td></tr>
+          <tr><td>Утяжеляющие</td><td>Барит, гематит</td><td>Работа в зонах АВПД</td></tr>
+          <tr><td>Понизители водоотдачи</td><td>Полимеры</td><td>Не дать раствору обезвоживаться</td></tr>
+          <tr><td>Расширяющие</td><td>Оксид магния, кальция</td><td>Плотный контакт с колонной и породой</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note bad">
+        <h4>Чем опасно некачественное цементирование</h4>
+        <p>Межпластовые перетоки, заколонные газопроявления и грифоны, обводнение продукции, коррозия колонны. Исправление требует дорогих ремонтно-изоляционных работ.</p>
+      </div>
+
+      <div class="quiz" data-quiz="s3"></div>
+      <div class="done-row"><button class="btn mark" type="button" data-mark="s3" aria-pressed="false">Отметить раздел пройденным</button><small>Отметка хранится в этом браузере</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 4 ============ -->
+<section class="iv-sec" id="s4" aria-labelledby="h4s">
+  <div class="wrap iv-grid">
+    <div class="iv-aside"><div class="iv-tag"><span class="n">04</span><span class="d">2700–3000 м</span><span class="bit"></span></div></div>
+    <div class="iv-body">
+      <h2 id="h4s">Заканчивание скважин</h2>
+      <p class="lead"><strong>Заканчивание</strong> — комплекс работ от вскрытия продуктивного пласта до ввода скважины в эксплуатацию.</p>
+      <ul class="flow" aria-label="Этапы заканчивания">
+        <li>Первичное вскрытие</li><li>Крепление</li><li>Перфорация</li><li>Освоение</li><li>Интенсификация</li><li>Эксплуатация</li>
+      </ul>
+
+      <h3>Первичное вскрытие</h3>
+      <p>Фильтрат и твёрдая фаза раствора проникают в пласт и снижают проницаемость призабойной зоны. Чтобы сохранить коллектор, держат минимально допустимую репрессию, используют растворы с низкой фильтрацией, кислоторастворимые кольматанты (CaCO₃), РУО, сокращают время вскрытия.</p>
+
+      <h3>Скин-фактор</h3>
+      <p><strong>S</strong> — безразмерный показатель дополнительного сопротивления притоку в призабойной зоне.</p>
+      <div class="skin">
+        <div class="s1"><b>S &lt; 0</b>зона улучшена (после ГРП, СКО)</div>
+        <div class="s2"><b>S = 0</b>пласт не изменён</div>
+        <div class="s3"><b>S &gt; 0</b>зона загрязнена</div>
+      </div>
+
+      <h3>Конструкции забоя</h3>
+      <div class="grid2">
+        <div class="card"><h4>Закрытый</h4><p>Колонна зацементирована и перфорирована. Самый распространённый вариант.</p></div>
+        <div class="card"><h4>Открытый</h4><p>Пласт не перекрыт колонной. Для крепких устойчивых коллекторов.</p></div>
+        <div class="card"><h4>С фильтром</h4><p>Против пласта спущен щелевой или проволочный фильтр.</p></div>
+        <div class="card"><h4>С гравийной набивкой</h4><p>Фильтр с гравием удерживает песок в слабосцементированных пластах.</p></div>
+      </div>
+
+      <h3>Вторичное вскрытие — перфорация</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Метод</th><th>Принцип</th><th>Особенности</th></tr></thead>
+        <tbody>
+          <tr><td>Кумулятивная</td><td>Струя от кумулятивного заряда пробивает колонну, цемент и породу</td><td>Основной метод; корпусные и бескорпусные перфораторы</td></tr>
+          <tr><td>Пулевая</td><td>Пули выстреливаются в стенку</td><td>Малая глубина каналов, сейчас редко</td></tr>
+          <tr><td>Гидропескоструйная</td><td>Абразивная струя через насадки</td><td>Чистые глубокие каналы без ударной нагрузки</td></tr>
+          <tr><td>Сверлящая</td><td>Механическое сверление</td><td>Бережна к цементному кольцу</td></tr>
+        </tbody>
+      </table></div>
+      <div class="grid2">
+        <div class="card"><h4>На репрессии</h4><p>Давление в скважине выше пластового. Безопаснее, но продукты взрыва и раствор загрязняют каналы.</p></div>
+        <div class="card"><h4>На депрессии</h4><p>Давление в скважине ниже пластового. Приток сразу очищает каналы; нужна герметичная устьевая обвязка.</p></div>
+      </div>
+
+      <h3>Освоение — вызов притока</h3>
+      <ol class="steps">
+        <li><b>Замена жидкости</b><span>Раствор заменяют на жидкость меньшей плотности: воду, нефть.</span></li>
+        <li><b>Свабирование</b><span>Уровень снижают поршнем (свабом) на канате.</span></li>
+        <li><b>Компрессирование</b><span>Газ или азот вытесняют жидкость и снижают давление на забой.</span></li>
+        <li><b>Струйные насосы и пены</b><span>Плавное регулируемое снижение забойного давления.</span></li>
+        <li><b>Отработка и исследования</b><span>До выноса загрязнений, стабилизации притока и замера дебита.</span></li>
+      </ol>
+
+      <h3>Интенсификация притока</h3>
+      <div class="grid3">
+        <div class="card"><h4>СКО</h4><p>Соляная кислота растворяет карбонаты и загрязнения в призабойной зоне.</p></div>
+        <div class="card"><h4>ГРП</h4><p>Жидкость под давлением выше давления разрыва создаёт трещину, проппант держит её открытой.</p></div>
+        <div class="card"><h4>ПАВ</h4><p>Снижают поверхностное натяжение, убирают водные блокады.</p></div>
+      </div>
+
+      <h3>Подземное и устьевое оборудование</h3>
+      <details class="acc" open><summary>НКТ</summary><div class="acc-b"><p>Насосно-компрессорные трубы — канал для подъёма продукции, закачки и промывок. Защищают эксплуатационную колонну.</p></div></details>
+      <details class="acc"><summary>Пакер</summary><div class="acc-b"><p>Герметично разобщает затрубное пространство над пластом, защищает колонну от давления и агрессивной среды.</p></div></details>
+      <details class="acc"><summary>Фонтанная арматура</summary><div class="acc-b"><p>Трубная головка и фонтанная ёлка с задвижками и штуцером. Подвешивает НКТ, герметизирует устье и регулирует режим работы.</p></div></details>
+
+      <div class="quiz" data-quiz="s4"></div>
+      <div class="done-row"><button class="btn mark" type="button" data-mark="s4" aria-pressed="false">Отметить раздел пройденным</button><small>Отметка хранится в этом браузере</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GLOSSARY ============ -->
+<section class="plain-sec" id="glossary" aria-labelledby="hg">
+  <div class="wrap">
+    <h2 id="hg">Словарь терминов</h2>
+    <div class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <label for="gq" class="vh">Поиск по словарю</label>
+      <input id="gq" type="search" placeholder="Например: ГРП, пакер, вязкость" autocomplete="off">
+    </div>
+    <p class="vh" id="gcount" aria-live="polite"></p>
+    <dl class="terms" id="terms"></dl>
+  </div>
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section class="plain-sec" id="sources" aria-labelledby="hsrc">
+  <div class="wrap">
+    <h2 id="hsrc">Литература и нормативы</h2>
+    <ol class="src">
+      <li>Булатов А.И., Проселков Ю.М., Шаманов С.А. Техника и технология бурения нефтяных и газовых скважин. — М.: Недра-Бизнесцентр, 2003.</li>
+      <li>Калинин А.Г. (ред.) Бурение нефтяных и газовых скважин. — М.: ЦентрЛитНефтеГаз, 2008.</li>
+      <li>Басарыгин Ю.М., Булатов А.И., Проселков Ю.М. Технология бурения нефтяных и газовых скважин. — М.: Недра-Бизнесцентр, 2001.</li>
+      <li>Вадецкий Ю.В. Бурение нефтяных и газовых скважин. — М.: Академия.</li>
+      <li>Рязанов Я.А. Энциклопедия по буровым растворам. — Оренбург: Летопись, 2005.</li>
+      <li>Городнов В.Д. Буровые растворы. — М.: Недра, 1985.</li>
+      <li>Булатов А.И., Данюшевский В.С. Тампонажные материалы. — М.: Недра, 1987.</li>
+      <li>Амиян В.А., Амиян А.В., Васильева Н.П. Вскрытие и освоение нефтегазовых пластов. — М.: Недра, 1980.</li>
+      <li>Bourgoyne A.T. et al. Applied Drilling Engineering. — SPE Textbook Series, Vol. 2, 1986.</li>
+      <li>ФНП «Правила безопасности в нефтяной и газовой промышленности» (приказ Ростехнадзора от 15.12.2020 № 534).</li>
+      <li>ГОСТ 632-80, ГОСТ 31446, ГОСТ 1581-96, API Spec 10A, API Spec 5CT.</li>
+    </ol>
+    <div class="note info">
+      <h4>Курс носит ознакомительный характер</h4>
+      <p>Он не заменяет проектную документацию, регламенты и инструкции предприятия. Выходные данные изданий и нормативные значения перед применением сверяйте с каталогами и действующими редакциями документов.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><p>© 2026 Бурение.Старт · Учебный курс «Основы бурения нефтяных и газовых скважин» · v1.0</p></div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+var root=document.documentElement;
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+
+/* Theme */
+var mq=window.matchMedia('(prefers-color-scheme: dark)');
+function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':mq.matches;}
+var themeBtn=document.getElementById('themeBtn');
+function syncThemeBtn(){themeBtn.setAttribute('aria-label',isDark()?'Включить светлую тему':'Включить тёмную тему');}
+themeBtn.addEventListener('click',function(){var n=isDark()?'light':'dark';root.setAttribute('data-theme',n);store('bs-theme',n);syncThemeBtn();});
+syncThemeBtn();
+
+/* Menu */
+var burger=document.getElementById('burger'),menu=document.getElementById('menu');
+function setMenu(o){menu.classList.toggle('open',o);burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Закрыть меню':'Открыть меню');}
+burger.addEventListener('click',function(){setMenu(!menu.classList.contains('open'));});
+menu.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open')){setMenu(false);burger.focus();}});
+
+/* Depth indicator */
+var bar=document.getElementById('depthBar'),lbl=document.getElementById('depthLabel'),tick=false;
+function onScroll(){var h=document.documentElement.scrollHeight-innerHeight,p=h>0?Math.min(1,scrollY/h):0;bar.style.width=(p*100)+'%';lbl.textContent=Math.round(p*3000)+' м';lbl.classList.toggle('on',scrollY>200);tick=false;}
+addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll);}},{passive:true});onScroll();
+
+/* Active nav */
+var links=[].slice.call(menu.querySelectorAll('a'));
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){links.forEach(function(a){var on=a.getAttribute('href')==='#'+en.target.id;a.classList.toggle('active',on);if(on)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});}});},{rootMargin:'-45% 0px -50% 0px'});
+  links.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s)io.observe(s);});
+}
+
+/* Progress */
+var IDS=['s1','s2','s3','s4'],done={};
+try{done=JSON.parse(store('bs-progress')||'{}')||{};}catch(e){done={};}
+function renderProgress(){
+  var n=0;IDS.forEach(function(id){var d=!!done[id];if(d)n++;
+    var c=document.querySelector('[data-card="'+id+'"]');c.classList.toggle('done',d);c.querySelector('.badge').textContent=d?'Пройдено ✓':'Не пройден';
+    var b=document.querySelector('[data-mark="'+id+'"]');b.setAttribute('aria-pressed',d);b.textContent=d?'Раздел пройден ✓':'Отметить раздел пройденным';});
+  document.getElementById('progFill').style.width=(n/4*100)+'%';
+  document.getElementById('progBar').setAttribute('aria-valuenow',n);
+  document.getElementById('progText').textContent='Пройдено '+n+' из 4'+(n===4?' — курс завершён!':'');
+}
+function setDone(id,v){if(v)done[id]=true;else delete done[id];store('bs-progress',JSON.stringify(done));renderProgress();}
+document.querySelectorAll('[data-mark]').forEach(function(b){b.addEventListener('click',function(){var id=b.getAttribute('data-mark');setDone(id,!done[id]);});});
+renderProgress();
+
+/* Quizzes */
+var Q={
+s1:[
+ {q:'Какой тип долота разрушает породу резанием поликристаллическими алмазными резцами?',o:['Шарошечное','PDC','Бурильная головка','Импрегнированное алмазное'],a:1,e:'Долота PDC режут породу, у них нет подвижных частей. Шарошечные дробят и скалывают, импрегнированные истирают.'},
+ {q:'Какой элемент КНБК создаёт осевую нагрузку на долото?',o:['Ведущая труба','Вертлюг','УБТ','Калибратор'],a:2,e:'Утяжелённые бурильные трубы своим весом нагружают долото, а колонна выше остаётся растянутой.'},
+ {q:'Что из перечисленного — прямой признак ГНВП?',o:['Снижение механической скорости','Рост объёма раствора в приёмных ёмкостях','Рост веса на крюке','Падение частоты вращения'],a:1,e:'Прирост объёма в ёмкостях означает, что в скважину поступает пластовый флюид.'}
+],
+s2:[
+ {q:'Какое давление создаст столб раствора плотностью 1,20 г/см³ на глубине 2000 м?',o:['≈ 2,35 МПа','≈ 12 МПа','≈ 23,5 МПа','≈ 235 МПа'],a:2,e:'P = 1200 · 9,81 · 2000 = 23 544 000 Па ≈ 23,54 МПа.'},
+ {q:'Какой параметр показывает, как раствор удерживает шлам при остановке циркуляции?',o:['pH','СНС','Плотность','Содержание песка'],a:1,e:'Статическое напряжение сдвига характеризует прочность структуры раствора в покое.'},
+ {q:'Каким прибором измеряют фильтрацию раствора?',o:['Ареометром','Воронкой Марша','Фильтр-прессом','pH-метром'],a:2,e:'Фильтр-пресс определяет объём фильтрата за 30 минут под давлением.'}
+],
+s3:[
+ {q:'На какую колонну монтируют ПВО перед бурением под следующие колонны?',o:['Направление','Кондуктор','Хвостовик','НКТ'],a:1,e:'Кондуктор перекрывает верхние неустойчивые отложения, на его устье ставят противовыбросовое оборудование.'},
+ {q:'Зачем на колонну устанавливают центраторы?',o:['Чтобы ускорить схватывание цемента','Чтобы колонна стояла по центру и цементное кольцо было равномерным','Чтобы срезать корку','Чтобы не дать цементу вернуться в колонну'],a:1,e:'Без центрирования колонна прижимается к стенке, и с узкой стороны цемент не замещает раствор.'},
+ {q:'Что сигнализирует об окончании продавки?',o:['Падение давления до нуля','Рост давления при посадке пробки на упорное кольцо','Появление цемента на устье','Окончание буферной жидкости'],a:1,e:'Посадка верхней пробки на упорное кольцо даёт резкий рост давления — «стоп».'}
+],
+s4:[
+ {q:'Что означает отрицательный скин-фактор?',o:['Призабойная зона загрязнена','Пласт не изменён','Призабойная зона улучшена','Скважина не работает'],a:2,e:'S < 0 бывает после ГРП или кислотной обработки: приток легче, чем в нетронутом пласте.'},
+ {q:'Перфорация на депрессии — это когда…',o:['давление в скважине выше пластового','давление в скважине ниже пластового','скважина заполнена раствором','перфорацию ведут после ГРП'],a:1,e:'При депрессии приток из пласта сразу очищает перфорационные каналы.'},
+ {q:'Какой метод создаёт в пласте трещину, закреплённую проппантом?',o:['СКО','Свабирование','ГРП','Обработка ПАВ'],a:2,e:'Гидроразрыв пласта: жидкость под давлением разрывает породу, проппант не даёт трещине сомкнуться.'}
+]};
+document.querySelectorAll('.quiz').forEach(function(box){
+  var id=box.getAttribute('data-quiz'),qs=Q[id],right=0,answered=0;
+  var h=document.createElement('h3');h.textContent='Проверьте себя';box.appendChild(h);
+  qs.forEach(function(it,qi){
+    var d=document.createElement('div');d.className='q';
+    var p=document.createElement('p');p.className='qt';p.id=id+'q'+qi;p.textContent=(qi+1)+'. '+it.q;d.appendChild(p);
+    var g=document.createElement('div');g.className='opts';g.setAttribute('role','group');g.setAttribute('aria-labelledby',p.id);
+    var ex=document.createElement('p');ex.className='expl';ex.setAttribute('aria-live','polite');
+    it.o.forEach(function(t,oi){
+      var b=document.createElement('button');b.type='button';b.className='opt';b.textContent=t;
+      b.addEventListener('click',function(){
+        var bs=g.querySelectorAll('button');bs.forEach(function(x){x.disabled=true;});
+        bs[it.a].classList.add('right');
+        if(oi===it.a){right++;ex.textContent='Верно. '+it.e;}else{b.classList.add('wrong');ex.textContent='Неверно. '+it.e;}
+        answered++;upd();
+      });
+      g.appendChild(b);
+    });
+    d.appendChild(g);d.appendChild(ex);box.appendChild(d);
+  });
+  var sc=document.createElement('p');sc.className='score';sc.setAttribute('aria-live','polite');box.appendChild(sc);
+  function upd(){
+    var msg='Правильных ответов: '+right+' из 3';
+    if(answered===3){msg+=right===3?' — отлично! Раздел отмечен пройденным.':right===2?' — хороший результат, перечитайте пояснения.':' — стоит вернуться к материалу раздела.';
+      if(right===3&&!done[id])setDone(id,true);}
+    sc.textContent=msg;
+  }
+  upd();
+});
+
+/* Calculator */
+var cR=document.getElementById('cRho'),cH=document.getElementById('cH'),cP=document.getElementById('cP');
+var oP=document.getElementById('oP'),oD=document.getElementById('oD'),oDp=document.getElementById('oDp'),oR=document.getElementById('oR'),vd=document.getElementById('verdict');
+function num(el){var s=el.value.trim().replace(/\s/g,'').replace(',','.');return s===''||!/^-?\d*\.?\d+$/.test(s)?NaN:parseFloat(s);}
+function f(x,d){return x.toLocaleString('ru-RU',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function calc(){
+  var r=num(cR),H=num(cH),Pp=num(cP),err=[];
+  cR.setAttribute('aria-invalid',!(r>=0.8&&r<=2.6));cH.setAttribute('aria-invalid',!(H>0&&H<=12000));cP.setAttribute('aria-invalid',!(Pp>0&&Pp<=250));
+  if(!(r>=0.8&&r<=2.6))err.push('плотность — число от 0,8 до 2,6 г/см³');
+  if(!(H>0&&H<=12000))err.push('глубину — от 1 до 12 000 м');
+  if(!(Pp>0&&Pp<=250))err.push('пластовое давление — положительное число, МПа');
+  if(err.length){oP.textContent=oD.textContent=oR.textContent='—';oDp.textContent='';vd.className='verdict warn';vd.textContent='Проверьте ввод: '+err.join('; ')+'.';return;}
+  var P=r*1000*9.81*H/1e6,dP=P-Pp,pct=dP/Pp*100;
+  var shallow=H<=1200,cap=shallow?1.5:2.5,norm=Math.min((shallow?0.10:0.05)*Pp,cap);
+  var rmin=(Pp+norm)*1e6/(9.81*H)/1000,rmax=(Pp+cap)*1e6/(9.81*H)/1000;
+  oP.textContent=f(P,2)+' МПа';oD.textContent=(dP>=0?'+':'−')+f(Math.abs(dP),2)+' МПа';oDp.textContent='('+(dP>=0?'+':'−')+f(Math.abs(pct),1)+' %)';
+  oR.textContent=f(Math.ceil(rmin*1000)/1000,3)+' г/см³';
+  var nt=' Норма для '+(shallow?'H ≤ 1200 м':'H > 1200 м')+': не менее '+f(norm,2)+' МПа (предел '+f(cap,1)+' МПа).';
+  if(dP<0){vd.className='verdict bad';vd.textContent='Давление столба ниже пластового на '+f(-dP,2)+' МПа — риск ГНВП! Требуемая плотность — не менее '+f(Math.ceil(rmin*1000)/1000,3)+' г/см³.'+nt;}
+  else if(dP<norm){vd.className='verdict warn';vd.textContent='Превышение недостаточно: '+f(dP,2)+' МПа при норме '+f(norm,2)+' МПа. Рекомендуемая плотность — не менее '+f(Math.ceil(rmin*1000)/1000,3)+' г/см³.';}
+  else if(dP>cap+0.5){vd.className='verdict warn';vd.textContent='Превышение больше предела '+f(cap,1)+' МПа более чем на 0,5 МПа — риск поглощения и гидроразрыва. Плотность на пределе нормы — около '+f(Math.floor(rmax*1000)/1000,3)+' г/см³.';}
+  else{vd.className='verdict ok';vd.textContent='Репрессия соответствует требованиям.'+nt;}
+}
+[cR,cH,cP].forEach(function(el){el.addEventListener('input',calc);});calc();
+
+/* Glossary */
+var G=[
+['АВПД','Аномально высокое пластовое давление — выше гидростатического давления столба пластовой воды.'],
+['АНПД','Аномально низкое пластовое давление; повышает риск поглощений.'],
+['Башмак','Направляющая насадка на нижнем конце обсадной колонны; также — нижний конец колонны.'],
+['Буферная жидкость','Жидкость между буровым и тампонажным растворами: разделяет их и смывает корку.'],
+['ВЗД','Винтовой забойный двигатель: героторная пара ротор — статор, вращаемая потоком раствора.'],
+['ГНВП','Газонефтеводопроявление — поступление пластового флюида в скважину, предшественник выброса.'],
+['ГРП','Гидроразрыв пласта: создание трещины давлением жидкости с закреплением проппантом.'],
+['ГТИ','Геолого-технологические исследования: контроль бурения датчиками в реальном времени.'],
+['ДНС','Динамическое напряжение сдвига — показатель выносящей способности раствора.'],
+['Депрессия','Превышение пластового давления над давлением в скважине.'],
+['Зенитный угол','Угол между осью ствола и вертикалью.'],
+['КНБК','Компоновка низа бурильной колонны: долото, двигатель, центраторы, УБТ, телесистема.'],
+['Кольматация','Закупорка пор породы частицами раствора; бывает вредной и управляемой.'],
+['Кондуктор','Обсадная колонна, перекрывающая верхние неустойчивые породы; на ней монтируют ПВО.'],
+['НКТ','Насосно-компрессорные трубы для подъёма продукции и закачки жидкостей.'],
+['ОЗЦ','Ожидание затвердевания цемента — технологическая пауза после цементирования колонны.'],
+['ПАВ','Поверхностно-активные вещества; снижают поверхностное натяжение на границе фаз.'],
+['ПВО','Противовыбросовое оборудование для герметизации устья.'],
+['ПЦТ','Портландцемент тампонажный по ГОСТ 1581-96.'],
+['PDC','Долото с резцами из поликристаллического алмаза (Polycrystalline Diamond Compact).'],
+['Пакер','Устройство для герметичного разобщения затрубного пространства.'],
+['Перфорация','Создание каналов через колонну и цемент в продуктивный пласт.'],
+['Проппант','Расклинивающий материал (песок, керамика), удерживающий трещину ГРП открытой.'],
+['Репрессия','Превышение давления в скважине над пластовым.'],
+['РУО','Раствор на углеводородной основе (нефть, дизельное или минеральное масло).'],
+['СВП','Система верхнего привода — вращает бурильную колонну сверху.'],
+['СКО','Солянокислотная обработка призабойной зоны пласта.'],
+['СНС','Статическое напряжение сдвига — прочность структуры раствора в покое.'],
+['Скин-фактор','Показатель дополнительного сопротивления притоку в призабойной зоне.'],
+['УБТ','Утяжелённые бурильные трубы; создают нагрузку на долото.'],
+['УВ','Условная вязкость — время истечения раствора из воронки, с.'],
+['Фильтрация','Отдача раствором жидкой фазы в породу под перепадом давления.'],
+['Фонтанная арматура','Устьевое оборудование для подвески НКТ, герметизации и регулирования режима.'],
+['Хвостовик','Обсадная колонна, подвешенная в предыдущей и не доходящая до устья.']
+];
+var terms=document.getElementById('terms'),gq=document.getElementById('gq'),gc=document.getElementById('gcount');
+G.forEach(function(t){var w=document.createElement('div');w.className='term';w.innerHTML='<dt></dt><dd></dd>';w.firstChild.textContent=t[0];w.lastChild.textContent=t[1];w.dataset.s=(t[0]+' '+t[1]).toLowerCase();terms.appendChild(w);});
+var empty=document.createElement('p');empty.className='empty';empty.textContent='Ничего не найдено. Попробуйте другое слово или сокращение.';empty.hidden=true;terms.parentNode.insertBefore(empty,terms.nextSibling);
+gq.addEventListener('input',function(){var q=gq.value.trim().toLowerCase(),n=0;
+  terms.querySelectorAll('.term').forEach(function(el){var m=!q||el.dataset.s.indexOf(q)>-1;el.hidden=!m;if(m)n++;});
+  empty.hidden=n>0;gc.textContent=q?'Найдено терминов: '+n:'';});
+})();
+</script>
+</body>
+</html>
